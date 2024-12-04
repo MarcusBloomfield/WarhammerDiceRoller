@@ -1,0 +1,103 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI.uss?fileID=7433441132597879392&amp;guid=22a1d0a99e2429e46ac24c6f61d87ba5&amp;type=3#UI" />
+    <ui:VisualElement name="Body" class="Body" style="flex-grow: 1;">
+        <ui:VisualElement name="Left" style="flex-grow: 1; width: 50%; height: 100%; justify-content: center; align-content: auto; align-self: auto; flex-direction: row; align-items: center;">
+            <ui:VisualElement name="Attacks" class="UI" style="flex-grow: 1; align-items: auto; align-self: auto; justify-content: flex-start; align-content: auto; position: relative; width: 50px; height: 400px;">
+                <ui:ListView data-source-type="Attack, Assembly-CSharp" name="AttackList" style="width: 100%; height: 100%;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="Defence" class="UI" style="flex-grow: 1; align-items: auto; align-self: auto; justify-content: flex-start; align-content: auto; position: relative; width: 50px; height: 400px;">
+                <ui:ListView data-source-type="Attack, Assembly-CSharp" name="DefenceList" style="width: 100%; height: 100%;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="Right" style="flex-grow: 1; width: 50%; height: 100%; position: relative; align-content: auto; justify-content: center;">
+            <ui:VisualElement name="StatsHolder" class="StatsHolder" style="flex-grow: 1; justify-content: space-between; align-self: flex-end; align-items: center; width: 567px; height: 278px; position: absolute;">
+                <ui:VisualElement style="flex-grow: 1; flex-direction: row; width: 221px; align-content: auto; align-self: auto; justify-content: space-evenly; align-items: auto; height: 27px;">
+                    <ui:Label text="Attack&#10;" name="Attack" style="align-self: auto; align-items: auto; align-content: auto;" />
+                    <ui:Label text="Defence&#10;" name="defence" style="align-self: auto; align-content: auto; justify-content: flex-end; align-items: auto;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="StatsDisplay" class="StatsDisplay" style="flex-grow: 1; align-self: flex-start; align-content: auto; justify-content: space-evenly; align-items: auto; width: auto; height: auto;">
+                    <ui:VisualElement name="AttackNames" style="flex-grow: 1; width: auto; height: auto; background-color: rgba(255, 6, 6, 0); -unity-background-image-tint-color: rgb(255, 0, 0);">
+                        <ui:Label text="Owner:" name="Owner" />
+                        <ui:Label text="Name:&#10;" name="Name" emoji-fallback-support="false">
+                            <Bindings>
+                                <ui:DataBinding property="text" data-source-path="selectedAttack.name" data-source-type="WarhammerDice, Assembly-CSharp" binding-mode="ToTarget" />
+                            </Bindings>
+                        </ui:Label>
+                        <ui:Label text="Attacks:" name="Attacks" />
+                        <ui:Label text="Skill:&#10;" name="Skill" />
+                        <ui:Label text="Strength:&#10;" name="Strength" />
+                        <ui:Label text="AP:" name="ArmorPenetration" />
+                        <ui:Label text="Damage:&#10;&#10;" name="Damage" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="AttackDisplay" style="flex-grow: 1; width: auto; height: auto;">
+                        <ui:Label text="owner" name="Owner">
+                            <Bindings>
+                                <ui:DataBinding property="text" data-source-path="selectedAttack.owner" data-source-type="WarhammerDice, Assembly-CSharp" binding-mode="ToTarget" update-trigger="OnSourceChanged" />
+                            </Bindings>
+                        </ui:Label>
+                        <ui:Label text="Name&#10;" name="Name" emoji-fallback-support="false">
+                            <Bindings>
+                                <ui:DataBinding property="text" data-source-path="selectedAttack.name" data-source-type="WarhammerDice, Assembly-CSharp" binding-mode="ToTarget" />
+                            </Bindings>
+                        </ui:Label>
+                        <ui:Label text="Label" name="Attacks">
+                            <Bindings>
+                                <ui:DataBinding property="text" data-source-path="selectedAttack.attacks" data-source-type="WarhammerDice, Assembly-CSharp" binding-mode="ToTarget" />
+                            </Bindings>
+                        </ui:Label>
+                        <ui:Label text="Label" name="Skill">
+                            <Bindings>
+                                <ui:DataBinding property="text" data-source-path="selectedAttack.skill" data-source-type="WarhammerDice, Assembly-CSharp" binding-mode="ToTarget" />
+                            </Bindings>
+                        </ui:Label>
+                        <ui:Label text="Strength&#10;" name="Strength">
+                            <Bindings>
+                                <ui:DataBinding property="text" data-source-path="selectedAttack.strength" data-source-type="WarhammerDice, Assembly-CSharp" binding-mode="ToTarget" />
+                            </Bindings>
+                        </ui:Label>
+                        <ui:Label text="Label" name="ArmorPenetration">
+                            <Bindings>
+                                <ui:DataBinding property="text" data-source-path="selectedAttack.armorPenetration" data-source-type="WarhammerDice, Assembly-CSharp" binding-mode="ToTarget" />
+                            </Bindings>
+                        </ui:Label>
+                        <ui:Label text="Label" name="Damage">
+                            <Bindings>
+                                <ui:DataBinding property="text" data-source-path="selectedAttack.damage" data-source-type="WarhammerDice, Assembly-CSharp" binding-mode="ToTarget" />
+                            </Bindings>
+                        </ui:Label>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="DefenceNames" style="flex-grow: 1;">
+                        <ui:Label text="Owner&#10;" name="Name" />
+                        <ui:Label text="Toughness:" name="Toughness" />
+                        <ui:Label text="Save:" name="Save" />
+                        <ui:Label text="Invulnerable:" name="InvulnerableSave" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="DefenceDisplay" style="flex-grow: 1;">
+                        <ui:Label text="Defence" name="defence" />
+                        <ui:Label text="Label" name="Name">
+                            <Bindings>
+                                <ui:DataBinding property="text" data-source-path="selectedDefence.name" data-source-type="WarhammerDice, Assembly-CSharp" binding-mode="ToTarget" />
+                            </Bindings>
+                        </ui:Label>
+                        <ui:Label text="Label" name="Toughness">
+                            <Bindings>
+                                <ui:DataBinding property="text" data-source-path="selectedDefence.toughness" data-source-type="WarhammerDice, Assembly-CSharp" binding-mode="ToTarget" />
+                            </Bindings>
+                        </ui:Label>
+                        <ui:Label text="Label" name="Save">
+                            <Bindings>
+                                <ui:DataBinding property="text" data-source-path="selectedDefence.save" data-source-type="WarhammerDice, Assembly-CSharp" binding-mode="ToTarget" />
+                            </Bindings>
+                        </ui:Label>
+                        <ui:Label text="Label" name="InvulnerableSave">
+                            <Bindings>
+                                <ui:DataBinding property="text" data-source-path="selectedDefence.invulnerableSave" data-source-type="WarhammerDice, Assembly-CSharp" binding-mode="ToTarget" />
+                            </Bindings>
+                        </ui:Label>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:Button text="Roll" name="Roll" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
