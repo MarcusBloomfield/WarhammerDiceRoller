@@ -172,6 +172,17 @@ public class WarhammerDice : MonoBehaviour
 
     public void Update()
     {
+        foreach(var dice in allDice)
+        {
+            if (dice != null)
+            {
+                if (dice.transform.position.y < -11)
+                {
+                    dice.transform.position = DiceSpawn.transform.position;
+                }
+            }
+        }
+
         if (allDice.Count <= 0)
         {
             allDice.Clear();
@@ -348,9 +359,9 @@ public class WarhammerDice : MonoBehaviour
         {
             if (dice != null)
             {
-                Vector3 random = DiceSpawn.transform.position += new Vector3(Random.Range(-5, 5), Random.Range(-5, 5), Random.Range(-5, 5));
+                Vector3 random = DiceSpawn.transform.position + new Vector3(Random.Range(-5, 5), Random.Range(-5, 5), Random.Range(-5, 5));
                 dice.GetComponent<Dice>().IsMoving = true;
-                dice.GetComponent<Rigidbody>().AddExplosionForce(110, random, 20);
+                dice.GetComponent<Rigidbody>().AddExplosionForce(111, random, 20);
                 dice.transform.position = random;
             }
         }

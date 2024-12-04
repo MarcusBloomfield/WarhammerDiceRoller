@@ -2,11 +2,11 @@
     <Style src="project://database/Assets/UI.uss?fileID=7433441132597879392&amp;guid=22a1d0a99e2429e46ac24c6f61d87ba5&amp;type=3#UI" />
     <ui:VisualElement name="Body" class="Body" style="flex-grow: 1;">
         <ui:VisualElement name="Left" style="flex-grow: 1; width: 50%; height: 100%; justify-content: center; align-content: auto; align-self: auto; flex-direction: row; align-items: center;">
-            <ui:VisualElement name="Attacks" class="UI" style="flex-grow: 1; align-items: auto; align-self: auto; justify-content: flex-start; align-content: auto; position: relative; width: 50px; height: 400px;">
-                <ui:ListView data-source-type="Attack, Assembly-CSharp" name="AttackList" style="width: 100%; height: 100%;" />
+            <ui:VisualElement name="Attacks" class="UI" style="flex-grow: 1; align-items: flex-start; align-self: auto; justify-content: flex-start; align-content: auto; position: relative; width: 50px; height: 400px;">
+                <ui:ListView data-source-type="Attack, Assembly-CSharp" name="AttackList" style="width: auto; height: auto;" />
             </ui:VisualElement>
-            <ui:VisualElement name="Defence" class="UI" style="flex-grow: 1; align-items: auto; align-self: auto; justify-content: flex-start; align-content: auto; position: relative; width: 50px; height: 400px;">
-                <ui:ListView data-source-type="Attack, Assembly-CSharp" name="DefenceList" style="width: 100%; height: 100%;" />
+            <ui:VisualElement name="Defence" class="UI" style="flex-grow: 1; align-items: flex-start; align-self: auto; justify-content: flex-start; align-content: auto; position: relative; width: 50px; height: 400px;">
+                <ui:ListView data-source-type="Attack, Assembly-CSharp" name="DefenceList" style="width: auto; height: auto;" />
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="Right" style="flex-grow: 1; width: 50%; height: 100%; position: relative; align-content: auto; justify-content: center;">
