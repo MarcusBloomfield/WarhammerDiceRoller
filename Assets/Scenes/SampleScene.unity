@@ -268,7 +268,7 @@ MonoBehaviour:
     armorPenetration: 0
     damage: 0
   selectedDefence:
-    name: 
+    owner: 
     toughness: 0
     save: 0
     invulnerableSave: 0
@@ -295,18 +295,23 @@ MonoBehaviour:
     armorPenetration: 4
     damage: 4
   allDefence:
-  - name: Leman Russ Battle Tank
+  - owner: Leman Russ
     toughness: 11
     save: 2
     invulnerableSave: 0
-  - name: Rogal Dorn Battle Tank
+  - owner: Rogal Dorn
     toughness: 12
     save: 2
+    invulnerableSave: 0
+  - owner: Tactical Squad
+    toughness: 4
+    save: 3
     invulnerableSave: 0
   camera: {fileID: 330585545}
   DicePrefab: {fileID: 4369091426698681260, guid: 307283c360f414f469f54c7e772b3ce9, type: 3}
   DiceSpawn: {fileID: 1206713920}
   allDice: []
+  RollStateAsString: 
   currentRollState: 0
   currentGameState: 0
 --- !u!4 &118181086

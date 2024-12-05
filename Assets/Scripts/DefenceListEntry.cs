@@ -12,6 +12,6 @@ public class DefenceListEntry
 
     public void SetData(Defence defence)
     {
-        name.text = defence.name;
+        name.text = defence.owner;
     }
 }

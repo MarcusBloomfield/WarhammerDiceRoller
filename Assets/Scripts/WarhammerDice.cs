@@ -10,6 +10,8 @@ public class WarhammerDice : MonoBehaviour
     public VisualElement StatsHolder;
     public VisualElement StatsDisplayAttack;
     public VisualElement StatsDisplayDefence;
+    public VisualElement ResultsDisplay;
+    public VisualElement Header;
     public Button rollButton;
     public ListView attacks;
     public VisualTreeAsset attackTemplate;
@@ -21,6 +23,8 @@ public class WarhammerDice : MonoBehaviour
 
     public Defence selectedDefence;
 
+    public Results results;
+
     public List<Attack> allAttacks = new List<Attack>();
     public List<Defence> allDefence = new List<Defence>();
 
@@ -30,6 +34,7 @@ public class WarhammerDice : MonoBehaviour
     public GameObject DiceSpawn;
     public List<GameObject> allDice = new();
 
+    public string RollStateAsString;
     public enum RollModifier 
     {
         lethal,
@@ -135,6 +140,21 @@ public class WarhammerDice : MonoBehaviour
         defenceListView.selectionType = SelectionType.Single;
 
         defenceListView.selectionChanged += SetSelectedDefence;
+
+        ResultsDisplay = ui.Q<VisualElement>("Results");
+
+        ResultsDisplay.Q<Label>("Owner").dataSource = this;
+        ResultsDisplay.Q<Label>("Defender").dataSource = this;
+        ResultsDisplay.Q<Label>("Weapon").dataSource = this;
+        ResultsDisplay.Q<Label>("Attacks").dataSource = this;
+        ResultsDisplay.Q<Label>("Hits").dataSource = this;
+        ResultsDisplay.Q<Label>("Wounds").dataSource = this;
+        ResultsDisplay.Q<Label>("Saves").dataSource = this;
+        ResultsDisplay.Q<Label>("Damage").dataSource = this;
+
+        Header = ui.Q<VisualElement>("Header");
+        Header.Q<Label>("RollState").dataSource = this;
+
     }
 
     public void SetSelectedDefence(IEnumerable<object> selectedItems)
@@ -159,6 +179,12 @@ public class WarhammerDice : MonoBehaviour
     {
         Debug.Log("Roll started");
 
+        results = new();
+
+        results.owner = selectedAttack.owner;
+        results.defender = selectedDefence.owner;
+        results.weapon = selectedAttack.name;
+        results.attacks = selectedAttack.attacks;
 
         for(int i = 0; i < selectedAttack.attacks; i++)
         {
@@ -172,6 +198,7 @@ public class WarhammerDice : MonoBehaviour
 
     public void Update()
     {
+        RollStateAsString = currentRollState.ToString();
         foreach(var dice in allDice)
         {
             if (dice != null)
@@ -196,8 +223,11 @@ public class WarhammerDice : MonoBehaviour
             {
                 if (dice != null)
                 {
-                    camera.transform.LookAt(dice.transform.position);
-                    break;
+                    if (dice.GetComponent<Dice>().IsMoving)
+                    {
+                        camera.transform.LookAt(dice.transform.position);
+                        break;
+                    }
                 }
             }
         }
@@ -205,6 +235,14 @@ public class WarhammerDice : MonoBehaviour
         switch (currentRollState)
         {
             case RollState.Idle:
+                foreach(var dice in allDice)
+                {
+                    if (dice != null)
+                    {
+                        Destroy(dice);
+                    }
+                }
+                allDice.Clear();
                 break;
             case RollState.HitRoll:
                 HitRoll();
@@ -214,6 +252,9 @@ public class WarhammerDice : MonoBehaviour
             break;   
             case RollState.SaveRoll:
                 SaveRoll();
+                break;
+            case RollState.DamageRoll:
+                DamageRoll();
                 break;
         }
     }
@@ -240,6 +281,10 @@ public class WarhammerDice : MonoBehaviour
                         if (die.GetTopNumber() < selectedAttack.skill)
                         {
                             Destroy(dice);
+                        }
+                        else
+                        {
+                            results.hits += 1;
                         }
                     }
                 }
@@ -271,6 +316,10 @@ public class WarhammerDice : MonoBehaviour
                         if (dice.GetComponent<Dice>().GetTopNumber() < WoundRollResultRequired())
                         {
                             Destroy(dice);
+                        }
+                        else
+                        {
+                            results.wounds += 1;
                         }
                     }
                 }
@@ -328,10 +377,11 @@ public class WarhammerDice : MonoBehaviour
                         if (die.GetTopNumber() >= selectedDefence.save + selectedAttack.armorPenetration)
                         {
                             Destroy(dice);
+                            results.saves += 1;
                         }
                     }
                 }
-                currentRollState = RollState.Idle;
+                currentRollState = RollState.DamageRoll;
                 currentGameState = GameState.Idle;
                 break;
         }
@@ -364,6 +414,34 @@ public class WarhammerDice : MonoBehaviour
                 dice.GetComponent<Rigidbody>().AddExplosionForce(111, random, 20);
                 dice.transform.position = random;
             }
+        }
+    }
+    void DamageRoll()
+    {
+        switch (currentGameState)
+        {
+            case GameState.Idle:
+                currentGameState = GameState.InProgress;
+                break;
+            case GameState.InProgress:
+                if (AllDiceAreStill())
+                {
+                    currentGameState = GameState.CollectingResults;
+                }
+                break;
+            case GameState.CollectingResults:
+
+                foreach(var dice in allDice)
+                {
+                    if (dice != null)
+                    {
+                        results.damage += selectedAttack.damage;
+                    }
+                }
+
+                currentRollState = RollState.Idle;
+                currentGameState = GameState.Idle;
+                break;
         }
     }
 }
