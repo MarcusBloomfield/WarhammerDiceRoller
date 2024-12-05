@@ -157,6 +157,5 @@
                 </ui:Label>
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:Button text="OK" name="CloseResults" />
     </ui:VisualElement>
 </ui:UXML>
