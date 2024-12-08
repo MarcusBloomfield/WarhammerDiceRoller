@@ -17,8 +17,22 @@
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="Right" style="flex-grow: 1; width: 50%; height: 100%; position: relative; align-content: auto; justify-content: center;">
-            <ui:VisualElement name="StatsHolder" class="StatsHolder" style="flex-grow: 1; justify-content: flex-start; align-self: flex-end; align-items: center; width: 472px; height: 278px; position: absolute; align-content: flex-start;">
-                <ui:VisualElement name="StatsDisplay" class="StatsDisplay" style="flex-grow: 1; align-self: flex-start; align-content: auto; justify-content: space-evenly; align-items: flex-start; width: auto; height: auto;">
+            <ui:VisualElement name="StatsHolder" class="StatsHolder" style="flex-grow: 1; justify-content: flex-start; align-self: flex-end; align-items: center; width: 472px; height: 278px; position: absolute; align-content: flex-start; display: flex; right: 0;">
+                <ui:VisualElement name="StatsDisplay" class="StatsDisplay" style="flex-grow: 1; align-self: flex-start; align-content: auto; justify-content: space-evenly; align-items: flex-start; width: auto; height: auto; position: relative;">
+                    <ui:VisualElement name="Minusers" style="flex-grow: 1; width: auto; height: auto; background-color: rgba(255, 6, 6, 0); -unity-background-image-tint-color: rgb(255, 0, 0); justify-content: flex-start; align-items: auto; margin-top: 10px; margin-right: 0; margin-bottom: 0; margin-left: 0;">
+                        <ui:Button text="-1" name="Attacks" class="Itterator" />
+                        <ui:Button text="-1" name="Skill" class="Itterator" />
+                        <ui:Button text="-1" name="Strength" class="Itterator" />
+                        <ui:Button text="-1" name="AP" class="Itterator" />
+                        <ui:Button text="-1" name="Damage" class="Itterator" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="Adders" style="flex-grow: 1; width: auto; height: auto; background-color: rgba(255, 6, 6, 0); -unity-background-image-tint-color: rgb(255, 0, 0); justify-content: flex-end; align-items: flex-start; align-content: auto; margin-top: 11px;">
+                        <ui:Button text="+1" name="Attacks" class="Itterator" />
+                        <ui:Button text="+1" name="Skill" class="Itterator" />
+                        <ui:Button text="+1" name="Strength" class="Itterator" />
+                        <ui:Button text="+1" name="AP" class="Itterator" />
+                        <ui:Button text="+1" name="Damage" class="Itterator" />
+                    </ui:VisualElement>
                     <ui:VisualElement name="AttackNames" style="flex-grow: 1; width: auto; height: auto; background-color: rgba(255, 6, 6, 0); -unity-background-image-tint-color: rgb(255, 0, 0);">
                         <ui:Label text="Owner:" name="Owner" />
                         <ui:Label text="Name:&#10;" name="Name" emoji-fallback-support="false">

@@ -4,6 +4,17 @@ using System.Collections.Generic;
 using Unity.Properties;
 using System.Linq;
 
+public enum RollModifier
+{
+    Lethal,
+    Devestating,
+    Sustained,
+    Hazardous,
+    D6Attacks,
+    D3Attack,
+    D6Damage,
+    D3Damage
+}
 public class WarhammerDice : MonoBehaviour
 {
     public VisualElement ui;
@@ -12,7 +23,19 @@ public class WarhammerDice : MonoBehaviour
     public VisualElement StatsDisplayDefence;
     public VisualElement ResultsDisplay;
     public VisualElement Header;
+    public VisualElement Minusers;
+    public VisualElement Adders;
     public Button rollButton;
+    public Button addToHitAttacks;
+    public Button addToHitSkill;
+    public Button addToHitStrength;
+    public Button addToHitAP;
+    public Button addToHitDamage;
+    public Button minusToAttacks;
+    public Button minusToHitSkill;
+    public Button minusToHitStrength;
+    public Button minusToHitAP;
+    public Button minusToHitDamage;
     public ListView attacks;
     public VisualTreeAsset attackTemplate;
 
@@ -35,11 +58,6 @@ public class WarhammerDice : MonoBehaviour
     public List<GameObject> allDice = new();
 
     public string RollStateAsString;
-    public enum RollModifier 
-    {
-        lethal,
-        devestating
-    }
     public enum RollState {Idle, HitRoll, WoundRoll, SaveRoll, DamageRoll}
 
     public RollState currentRollState = RollState.HitRoll;
@@ -155,6 +173,70 @@ public class WarhammerDice : MonoBehaviour
         Header = ui.Q<VisualElement>("Header");
         Header.Q<Label>("RollState").dataSource = this;
 
+
+        Adders = ui.Q<VisualElement>("Adders");
+        addToHitAttacks =  Adders.Q<Button>("Attacks");
+        addToHitSkill = Adders.Q<Button>("Skill");
+        addToHitStrength = Adders.Q<Button>("Strength");
+        addToHitAP = Adders.Q<Button>("AP");
+        addToHitDamage = Adders.Q<Button>("Damage");
+
+        addToHitAttacks.clicked += () => 
+        {
+            selectedAttack.attacks += 1;
+        };
+
+        addToHitSkill.clicked += () =>
+        {
+            selectedAttack.skill += 1;
+        };
+
+        addToHitStrength.clicked += () =>
+        {
+            selectedAttack.strength += 1;
+        };
+
+        addToHitAP.clicked += () =>
+        {
+            selectedAttack.armorPenetration += 1;
+        };
+
+        addToHitDamage.clicked += () =>
+        {
+            selectedAttack.damage += 1;
+        };
+
+        Minusers = ui.Q<VisualElement>("Minusers");
+        minusToAttacks = Minusers.Q<Button>("Attacks");
+        minusToHitSkill = Minusers.Q<Button>("Skill");
+        minusToHitStrength = Minusers.Q<Button>("Strength");
+        minusToHitAP = Minusers.Q<Button>("AP");
+        minusToHitDamage = Minusers.Q<Button>("Damage");
+
+        minusToAttacks.clicked += () =>
+        {
+            selectedAttack.attacks -= 1;
+        };
+
+        minusToHitSkill.clicked += () =>
+        {
+            selectedAttack.skill -= 1;
+        };
+
+        minusToHitStrength.clicked += () =>
+        {
+            selectedAttack.strength -= 1;
+        };
+
+        minusToHitAP.clicked += () =>
+        {
+            selectedAttack.armorPenetration -= 1;
+        };
+
+        minusToHitDamage.clicked += () =>
+        {
+            selectedAttack.damage -= 1;
+        };
     }
 
     public void SetSelectedDefence(IEnumerable<object> selectedItems)

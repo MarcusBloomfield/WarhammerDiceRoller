@@ -44,3 +44,16 @@
     background-position-y: center 0;
     background-position-x: center 0;
 }
+
+.Itterator {
+    width: 15px;
+    height: 15px;
+    margin-top: 9px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    padding-top: 13px;
+    padding-right: 13px;
+    padding-bottom: 13px;
+    padding-left: 13px;
+}

@@ -1,8 +1,11 @@
+using NUnit.Framework;
+using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
 public class Attack
 {
+    public List<RollModifier> rollModifiers;
     public string owner;
     public string name;
     public int attacks;
