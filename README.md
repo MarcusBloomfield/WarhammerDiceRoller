@@ -26,7 +26,7 @@ The project follows a standard Unity project structure:
 
 The application appears to simulate Warhammer combat by allowing users to define attacks and see the resulting hits, wounds, saves, and damage. The UI is likely built using UI Toolkit.
 
-## How to Use (Presumed)
+## How to Use
 
 1.  Open the project in Unity Hub.
 2.  Open the main scene from the `Assets/Scenes/` folder.
