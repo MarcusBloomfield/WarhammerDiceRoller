@@ -24,7 +24,7 @@ The project follows a standard Unity project structure:
 
 ## Overview
 
-The application appears to simulate Warhammer combat by allowing users to define attacks and see the resulting hits, wounds, saves, and damage. The UI is likely built using UI Toolkit.
+The application appears to simulate Warhammer combat by allowing users to define attacks and see the resulting hits, wounds, saves, and damage. The UI is built using UI Toolkit.
 
 ## How to Use
 
