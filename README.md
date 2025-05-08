@@ -33,5 +33,3 @@ The application appears to simulate Warhammer combat by allowing users to define
 3.  Enter attack parameters into the UI.
 4.  Initiate the dice roll simulation.
 5.  View the results displayed in the UI.
-
-*(This README is based on an initial project scan. Further details will be added as the project is explored more thoroughly.)* 
