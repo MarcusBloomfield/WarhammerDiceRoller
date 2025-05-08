@@ -1,0 +1,14 @@
+- Project Name: WarhammerDiceRoller
+- Type: Unity Game/Application
+- Purpose: Simulates dice rolls for Warhammer.
+- Key Scripts identified:
+    - Assets/Scripts/WarhammerDice.cs (Likely main logic)
+    - Assets/Scripts/Attack.cs
+    - Assets/Scripts/Results.cs (Data class for roll results)
+    - Assets/Scripts/Defence.cs
+    - Assets/Scripts/DefenceListEntry.cs
+    - Assets/Scripts/Dice.cs
+    - Assets/AttackListEntry.cs
+- UI: Uses UI Toolkit (uxml, uss files present)
+- Standard Unity project structure observed (Scenes, Prefabs, Materials etc.)
+- License: MIT License (Copyright 2025 Marcus Bloomfield, added 09/05/2025) 

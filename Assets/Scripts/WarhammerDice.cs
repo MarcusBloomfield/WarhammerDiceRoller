@@ -138,9 +138,9 @@ public class WarhammerDice : MonoBehaviour
 
         defenceListView.makeItem = () =>
         {
-            var newListEntry = defenceTemplate.Instantiate();
+            TemplateContainer newListEntry = defenceTemplate.Instantiate();
 
-            var newListEntryLogic = new DefenceListEntry();
+            DefenceListEntry newListEntryLogic = new DefenceListEntry();
 
             newListEntry.userData = newListEntryLogic;
 
